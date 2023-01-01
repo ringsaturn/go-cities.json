@@ -1,7 +1,6 @@
 use std::vec;
-
 use lazy_static::lazy_static;
-
+use rand::seq::SliceRandom;
 use serde::{Deserialize, Serialize};
 
 lazy_static! {
@@ -14,6 +13,7 @@ lazy_static! {
 /// ```
 pub type Cities = Vec<City>;
 
+#[derive(Debug)]
 pub struct City {
     pub country: String,
     pub name: String,
@@ -48,4 +48,13 @@ fn get_cities() -> Cities {
         })
     }
     return cities;
+}
+
+
+/// ```rust
+/// use cities_json::get_random_cities;
+/// println!("random: {:?}", get_random_cities());
+/// ```
+pub fn get_random_cities() -> &'static City{
+    return CITIES.choose(&mut rand::thread_rng()).unwrap();
 }
