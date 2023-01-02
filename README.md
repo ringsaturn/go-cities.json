@@ -8,7 +8,19 @@
   use cities_json::CITIES;
   println!("first {:?}", CITIES.get(0).unwrap().name);
   ```
-- Python: coming soon
+- Python: <https://pypi.org/project/citiespy/>
+  ```bash
+  pip install citiespy
+  ```
+  ```python
+  from citiespy import all_cities, random_city
+
+  city = random_city()
+  print(city)
+
+  cities = all_cities()
+  print(len(cities))
+  ```
 
 ## LICENSE
 
