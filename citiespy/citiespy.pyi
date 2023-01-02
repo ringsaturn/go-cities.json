@@ -1,3 +1,5 @@
+from typing import List
+
 class City(object):
     lng: float
     lat: float
@@ -6,3 +8,5 @@ class City(object):
 
 
 def random_city() -> City: ...
+
+def all_cities() -> List[City]: ...
