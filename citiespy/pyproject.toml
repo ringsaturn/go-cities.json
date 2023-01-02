@@ -18,5 +18,5 @@ cargo-extra-args = "--features python-extension"
 
 [project.urls]
 "Source Code" = "https://github.com/ringsaturn/go-cities.json"
-Issues = "github.com/ringsaturn/go-cities.json"
+Issues = "https://github.com/ringsaturn/go-cities.json/issues"
 Documentation = "https://github.com/ringsaturn/go-cities.json"
