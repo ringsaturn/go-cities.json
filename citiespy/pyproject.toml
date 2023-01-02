@@ -17,6 +17,6 @@ bindings = "pyo3"
 cargo-extra-args = "--features python-extension"
 
 [project.urls]
-"Source Code" = "https://github.com/ringsaturn/go-cities.json/citiespy"
+"Source Code" = "https://github.com/ringsaturn/go-cities.json"
 Issues = "github.com/ringsaturn/go-cities.json"
-Documentation = "https://github.com/ringsaturn/go-cities.json/citiespy"
+Documentation = "https://github.com/ringsaturn/go-cities.json"
