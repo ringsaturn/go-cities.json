@@ -1,0 +1,22 @@
+[build-system]
+requires = ["maturin"]
+build-backend = "maturin"
+
+[project]
+name = "citiespy"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+description = "Cities."
+
+[tool.maturin]
+bindings = "pyo3"
+cargo-extra-args = "--features python-extension"
+
+[project.urls]
+"Source Code" = "https://github.com/ringsaturn/go-cities.json/citiespy"
+Issues = "github.com/ringsaturn/go-cities.json"
+Documentation = "https://github.com/ringsaturn/go-cities.json/citiespy"

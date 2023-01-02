@@ -5,6 +5,10 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+    paths:
+      - "citiespy/**"
+      - "src/**"
+      - ".github/workflows/rust.yaml"
 
 env:
   CARGO_TERM_COLOR: always
