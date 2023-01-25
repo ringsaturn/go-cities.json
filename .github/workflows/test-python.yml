@@ -96,7 +96,7 @@ jobs:
       - name: Install
         shell: bash
         run: |
-          maturin develop
+          maturin build
           pip install target/wheels/tzfpy-*.whl
 
       - name: Run tests and report coverage
