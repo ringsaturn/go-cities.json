@@ -5,7 +5,7 @@ on:
     paths:
       - "citiespy/**"
       - "src/**"
-      - ".github/workflows/test-python.yaml"
+      - ".github/workflows/test-python.yml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -57,6 +57,47 @@ jobs:
         run: |
           source activate
           maturin develop
+
+      - name: Run tests and report coverage
+        run: pytest --cov tests/
+
+  windows:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+          cache-dependency-path: "citiespy/requirements_dev.txt"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements_dev.txt
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly-2022-12-20
+
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: citiespy
+
+      - name: Install
+        shell: bash
+        run: |
+          maturin build
+          pip install target/wheels/citiespy-*.whl
 
       - name: Run tests and report coverage
         run: pytest --cov tests/
