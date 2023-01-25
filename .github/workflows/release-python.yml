@@ -10,8 +10,8 @@ on:
     paths:
       - "citiespy/**"
       - "src/**"
-      - ".github/workflows/test-python.yaml"
-      - ".github/workflows/release-python.yaml"
+      - ".github/workflows/test-python.yml"
+      - ".github/workflows/release-python.yml"
   release:
     types:
       - published
