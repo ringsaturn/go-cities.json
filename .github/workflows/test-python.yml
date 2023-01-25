@@ -97,7 +97,7 @@ jobs:
         shell: bash
         run: |
           maturin build
-          pip install target/wheels/tzfpy-*.whl
+          pip install target/wheels/citiespy-*.whl
 
       - name: Run tests and report coverage
         run: pytest --cov tests/
