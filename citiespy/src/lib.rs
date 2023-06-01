@@ -17,7 +17,7 @@ pub struct City {
 
 #[pymethods]
 impl City {
-    fn __str__(slf: PyRef<'_, Self>) -> PyResult<String> {
+    fn __repr__(slf: PyRef<'_, Self>) -> PyResult<String> {
         return Ok(format!(
             "City: country={country}, name={name}, lng={lng}, lat={lat}",
             country = slf.country,
