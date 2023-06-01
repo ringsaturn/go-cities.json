@@ -5,7 +5,7 @@ edition = "2021"
 license-file = "LICENSE"
 description = "Get cities"
 homepage = "https://github.com/ringsaturn/go-cities.json"
-documentation = "https://github.com/ringsaturn/go-cities.json"
+documentation = "https://docs.rs/cities-json"
 repository = "https://github.com/ringsaturn/go-cities.json"
 readme = "README.md"
 
