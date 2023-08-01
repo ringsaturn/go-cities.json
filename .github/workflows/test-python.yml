@@ -32,6 +32,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: nightly
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -48,16 +52,6 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements_dev.txt
-
-      - name: Set up Rust
-        uses: dtolnay/rust-toolchain@master
-        with:
-          toolchain: nightly-2022-12-20
-
-      - name: Cache Rust
-        uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: citiespy
 
       - name: Install
         run: |
@@ -77,6 +71,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: nightly
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -88,16 +86,6 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements_dev.txt
-
-      - name: Set up Rust
-        uses: dtolnay/rust-toolchain@master
-        with:
-          toolchain: nightly-2022-12-20
-
-      - name: Cache Rust
-        uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: citiespy
 
       - name: Install
         shell: bash
