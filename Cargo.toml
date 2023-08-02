@@ -2,7 +2,7 @@
 name = "cities-json"
 version = "0.4.0"
 edition = "2021"
-license-file = "LICENSE"
+license = "Unlicense"
 description = "Get cities"
 homepage = "https://github.com/ringsaturn/go-cities.json"
 documentation = "https://docs.rs/cities-json"
