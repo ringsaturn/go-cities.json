@@ -9,6 +9,7 @@ on:
       - "citiespy/**"
       - "src/**"
       - ".github/workflows/rust.yaml"
+      - "upstream/*"
 
 jobs:
   build:

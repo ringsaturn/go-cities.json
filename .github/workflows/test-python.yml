@@ -6,6 +6,7 @@ on:
       - "citiespy/**"
       - "src/**"
       - ".github/workflows/test-python.yml"
+      - "upstream/*"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
