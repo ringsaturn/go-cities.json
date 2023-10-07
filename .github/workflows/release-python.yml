@@ -31,7 +31,7 @@ jobs:
           command: build
           args: --release -o dist --find-interpreter
           working-directory: citiespy
-          # sccache: true
+          sccache: true
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -51,7 +51,7 @@ jobs:
           command: build
           args: --release -o dist --target universal2-apple-darwin --find-interpreter
           working-directory: citiespy
-          # sccache: true
+          sccache: true
       - name: Upload wheels
         uses: actions/upload-artifact@v3
         with:
@@ -67,7 +67,7 @@ jobs:
            command: build
            args: --release -o dist --find-interpreter
            working-directory: citiespy
-          #  sccache: true
+           sccache: true
        - name: Upload wheels
          uses: actions/upload-artifact@v3
          with:
