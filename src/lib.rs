@@ -19,6 +19,8 @@ pub struct City {
     pub name: String,
     pub lat: f64,
     pub lng: f64,
+    pub admin1: String,
+    pub admin2: String,
 }
 
 type RawCities = Vec<RawCity>;
@@ -30,6 +32,8 @@ struct RawCity {
     name: String,
     lat: String,
     lng: String,
+    admin1: String,
+    admin2: String,
 }
 
 fn load_json_data() -> Vec<u8> {
@@ -45,6 +49,8 @@ fn get_cities() -> Cities {
             name: rawcity.name.to_owned(),
             lat: rawcity.lat.parse::<f64>().unwrap(),
             lng: rawcity.lng.parse::<f64>().unwrap(),
+            admin1: rawcity.admin1.to_owned(),
+            admin2: rawcity.admin2.to_owned(),
         })
     }
     return cities;

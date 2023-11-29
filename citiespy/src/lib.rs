@@ -13,17 +13,23 @@ pub struct City {
     pub lat: f64,
     #[pyo3(get)]
     pub lng: f64,
+    #[pyo3(get)]
+    pub admin1: String,
+    #[pyo3(get)]
+    pub admin2: String,
 }
 
 #[pymethods]
 impl City {
     fn __repr__(slf: PyRef<'_, Self>) -> PyResult<String> {
         return Ok(format!(
-            "City: country={country}, name={name}, lng={lng}, lat={lat}",
+            "City: country={country}, name={name}, lng={lng}, lat={lat}, admin1={admin1}, admin2={admin2}",
             country = slf.country,
             name = slf.name,
             lng = slf.lng,
             lat = slf.lat,
+            admin1 = slf.admin1,
+            admin2 = slf.admin2,
         ));
     }
 }
@@ -38,6 +44,8 @@ pub fn random_city() -> PyResult<City> {
         lat: rust_city.lat,
         lng: rust_city.lng,
         name: rust_city.name.to_string(),
+        admin1: rust_city.admin1.to_string(),
+        admin2: rust_city.admin2.to_string(),
     };
     return Ok(city);
 }
@@ -51,6 +59,8 @@ pub fn all_cities() -> PyResult<Cities> {
             lat: rust_city.lat,
             lng: rust_city.lng,
             name: rust_city.name.to_string(),
+            admin1: rust_city.admin1.to_string(),
+            admin2: rust_city.admin2.to_string(),
         })
     }
     return Ok(cities);

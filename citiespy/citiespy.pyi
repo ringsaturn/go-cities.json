@@ -5,6 +5,8 @@ class City(object):
     lat: float
     country: str
     name: str
+    admin1: str
+    admin2: str
 
 
 def random_city() -> City: ...

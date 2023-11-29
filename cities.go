@@ -15,6 +15,8 @@ type City struct {
 	Name    string  `json:"name"`
 	Lat     float64 `json:"lat"`
 	Lng     float64 `json:"lng"`
+	Admin1  string  `json:"admin1"`
+	Admin2  string  `json:"admin2"`
 }
 
 var Cities []*City
@@ -25,6 +27,8 @@ func init() {
 		Name    string `json:"name"`
 		Lat     string `json:"lat"`
 		Lng     string `json:"lng"`
+		Admin1  string `json:"admin1"`
+		Admin2  string `json:"admin2"`
 	}
 
 	var rawcities []*RawCity
@@ -45,6 +49,8 @@ func init() {
 			Lng:     lng,
 			Country: rawcity.Country,
 			Name:    rawcity.Name,
+			Admin1:  rawcity.Admin1,
+			Admin2:  rawcity.Admin2,
 		})
 	}
 }
