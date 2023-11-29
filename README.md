@@ -1,6 +1,6 @@
 # Multi languages binding for `cities.json`
 
-> **NOTE**
+> [!NOTE]
 >
 > It's used for geo related benchmarks, not for production usages.
 
