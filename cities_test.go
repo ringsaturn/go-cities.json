@@ -41,6 +41,8 @@ func TestGenGeoJSON(t *testing.T) {
 			Properties: map[string]interface{}{
 				"Country": city.Country,
 				"Name":    city.Name,
+				"Admin1":  city.Admin1,
+				"Admin2":  city.Admin2,
 			},
 			Geometry: Geometry{
 				Type:        "Point",
