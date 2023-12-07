@@ -10,6 +10,7 @@ on:
       - "src/**"
       - ".github/workflows/rust.yaml"
       - "upstream/*"
+      - "rust-toolchain.toml"
 
 jobs:
   build:
