@@ -35,7 +35,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-linux
           path: citiespy/dist
 
   macos:
@@ -55,7 +55,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-macos
           path: citiespy/dist
 
   windows:
@@ -75,7 +75,7 @@ jobs:
        - name: Upload wheels
          uses: actions/upload-artifact@v4
          with:
-           name: wheels
+           name: wheels-windows
            path: citiespy/dist
 
   release:
@@ -85,7 +85,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: wheels
+          path: wheels
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
