@@ -85,7 +85,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          path: wheels
+          pattern: wheels
+          path: "wheels"
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
