@@ -85,14 +85,14 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          pattern: wheels
-          path: "wheels"
+          pattern: wheels*
+          path: "target/wheels"
 
-      - name: Upload Coverage Report
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: "wheels"
-          path: "wheels"
+          path: "target/wheels"
           retention-days: 3
 
       - name: Release
@@ -100,7 +100,7 @@ jobs:
         if: github.event_name == 'release' && github.event.action == 'published'
         with:
           files: |
-            wheels
+            target/wheels
 
       - name: Publish to PyPI
         uses: messense/maturin-action@v1
