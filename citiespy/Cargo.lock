@@ -22,7 +22,7 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "cities-json"
-version = "0.5.3"
+version = "0.5.4"
 dependencies = [
  "lazy_static",
  "rand",
@@ -32,7 +32,7 @@ dependencies = [
 
 [[package]]
 name = "citiespy"
-version = "0.5.3"
+version = "0.5.4"
 dependencies = [
  "cities-json",
  "pyo3",
@@ -317,9 +317,9 @@ dependencies = [
 
 [[package]]
 name = "target-lexicon"
-version = "0.12.12"
+version = "0.12.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "14c39fd04924ca3a864207c66fc2cd7d22d7c016007f9ce846cbb9326331930a"
+checksum = "69758bda2e78f098e4ccb393021a0963bb3442eac05f135c30f61b7370bbafae"
 
 [[package]]
 name = "unicode-ident"
