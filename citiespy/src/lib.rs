@@ -68,7 +68,7 @@ pub fn all_cities() -> PyResult<Cities> {
 
 
 #[pymodule]
-fn citiespy(_py: Python, m: &PyModule) -> PyResult<()> {
+fn citiespy(_py: Python, m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(random_city, m)?)?;
     m.add_function(wrap_pyfunction!(all_cities, m)?)?;
     Ok(())
