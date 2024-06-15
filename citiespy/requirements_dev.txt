@@ -1,4 +1,0 @@
-maturin==1.4.0
-pytest
-pytest-benchmark
-pytest-cov

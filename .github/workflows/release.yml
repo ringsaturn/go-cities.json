@@ -2,20 +2,26 @@ name: Release
 
 on:
   push:
-    tags:
-      - "*.*.*"
-  release:
-    types:
-      - published
-
-
+    branches: ['master']
+  schedule:
+    - cron: '0 0 1 * *'
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
-      - uses: katyo/publish-crates@v2
+      - uses: actions/checkout@v3
+      - name: git config
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+      - uses: actions/setup-node@v3
         with:
-          registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm install
+      - run: npm run build
+      - run: npm test
+      - run: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

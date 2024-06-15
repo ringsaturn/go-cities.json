@@ -1,1 +1,6 @@
-gocities.geojson
+node_modules
+npm-debug.log
+admin1CodesASCII.txt
+admin2Codes.txt
+cities1000.txt
+cities1000.zip
