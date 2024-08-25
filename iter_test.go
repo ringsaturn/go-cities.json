@@ -11,7 +11,7 @@ import (
 
 func ExampleAll() {
 	c := 0
-	for city := range gocitiesjson.All() {
+	for city := range gocitiesjson.All(false) {
 		_ = city
 		c++
 	}
@@ -25,7 +25,7 @@ func ExampleFilter() {
 	bboxFilter := func(city *gocitiesjson.City) bool {
 		return city.Lng > 0 && city.Lng < 10 && city.Lat > 0 && city.Lat < 10
 	}
-	for city := range gocitiesjson.Filter(bboxFilter) {
+	for city := range gocitiesjson.Filter(bboxFilter, false) {
 		_ = city
 		c++
 	}

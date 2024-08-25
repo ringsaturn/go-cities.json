@@ -3,22 +3,33 @@
 
 package gocitiesjson
 
-import "iter"
+import (
+	"iter"
+	"math/rand"
+)
 
-func All() iter.Seq[*City] {
+func All(shuffle bool) iter.Seq[*City] {
 	return func(yield func(*City) bool) {
-		for _, city := range Cities {
-			if !yield(city) {
+		var idxes []int
+		if shuffle {
+			idxes = make([]int, len(idx))
+			copy(idxes, idx)
+			rand.Shuffle(len(idxes), func(i, j int) { idxes[i], idxes[j] = idxes[j], idxes[i] })
+		} else {
+			idxes = idx
+		}
+		for _, i := range idxes {
+			if !yield(Cities[i]) {
 				return
 			}
 		}
 	}
 }
 
-func Filter(filter func(*City) bool) iter.Seq[*City] {
+func Filter(fn func(*City) bool, shuffle bool) iter.Seq[*City] {
 	return func(yield func(*City) bool) {
-		for _, city := range Cities {
-			if filter(city) {
+		for city := range All(shuffle) {
+			if fn(city) {
 				if !yield(city) {
 					return
 				}

@@ -7,8 +7,14 @@ import (
 	"strconv"
 )
 
-//go:embed upstream/cities.json
-var citiesbytes []byte
+var (
+	//go:embed upstream/cities.json
+	citiesbytes []byte
+
+	Cities []*City
+
+	idx []int
+)
 
 type City struct {
 	Country string  `json:"country"`
@@ -18,8 +24,6 @@ type City struct {
 	Admin1  string  `json:"admin1"`
 	Admin2  string  `json:"admin2"`
 }
-
-var Cities []*City
 
 func init() {
 	type RawCity struct {
@@ -35,7 +39,7 @@ func init() {
 	if err := json.Unmarshal(citiesbytes, &rawcities); err != nil {
 		panic(err)
 	}
-	for _, rawcity := range rawcities {
+	for i, rawcity := range rawcities {
 		lat, err := strconv.ParseFloat(rawcity.Lat, 64)
 		if err != nil {
 			panic(err)
@@ -52,5 +56,6 @@ func init() {
 			Admin1:  rawcity.Admin1,
 			Admin2:  rawcity.Admin2,
 		})
+		idx = append(idx, i)
 	}
 }
