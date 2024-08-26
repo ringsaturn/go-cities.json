@@ -4,6 +4,7 @@ package gocitiesjson
 import (
 	_ "embed"
 	"encoding/json"
+	"math/rand"
 	"strconv"
 )
 
@@ -58,4 +59,8 @@ func init() {
 		})
 		idx = append(idx, i)
 	}
+}
+
+func Random() *City {
+	return Cities[rand.Intn(len(Cities))]
 }
