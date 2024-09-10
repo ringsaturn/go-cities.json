@@ -28,7 +28,7 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "cities-json"
-version = "0.6.0"
+version = "0.6.3"
 dependencies = [
  "lazy_static",
  "rand",
@@ -38,7 +38,7 @@ dependencies = [
 
 [[package]]
 name = "citiespy"
-version = "0.6.0"
+version = "0.6.3"
 dependencies = [
  "cities-json",
  "pyo3",
