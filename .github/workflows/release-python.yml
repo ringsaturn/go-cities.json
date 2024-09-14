@@ -69,7 +69,7 @@ jobs:
       - uses: messense/maturin-action@v1
         with:
           command: build
-          args: --release -o dist -i 3.9 3.10 3.11 3.12
+          args: --release -o dist -i 3.9 3.10 3.11 3.12 3.13
           working-directory: citiespy
           sccache: true
       - name: Upload wheels
