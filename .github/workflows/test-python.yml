@@ -8,6 +8,13 @@ on:
       - ".github/workflows/test-python.yml"
       - "upstream/*"
       - "rust-toolchain.toml"
+  push:
+    paths:
+      - "citiespy/**"
+      - "src/**"
+      - ".github/workflows/test-python.yml"
+      - "upstream/*"
+      - "rust-toolchain.toml"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -17,13 +24,16 @@ defaults:
   run:
     working-directory: citiespy
 
+env:
+  PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1
+
 jobs:
   ubuntu:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13.0-rc.2"]
 
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +70,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13.0-rc.2"]
 
     steps:
       - uses: actions/checkout@v4
@@ -97,7 +107,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13.0-rc.2"]
 
     steps:
       - uses: actions/checkout@v4
