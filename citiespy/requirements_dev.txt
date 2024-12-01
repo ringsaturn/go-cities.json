@@ -1,4 +1,4 @@
-maturin==1.7.4
+maturin==1.7.6
 pytest
 pytest-benchmark
 pytest-cov
