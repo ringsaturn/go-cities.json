@@ -1,7 +1,7 @@
-use std::vec;
 use lazy_static::lazy_static;
-use rand::seq::SliceRandom;
+use rand::random_range;
 use serde::{Deserialize, Serialize};
+use std::vec;
 
 lazy_static! {
     pub static ref CITIES: Cities = get_cities();
@@ -56,11 +56,10 @@ fn get_cities() -> Cities {
     return cities;
 }
 
-
 /// ```rust
 /// use cities_json::get_random_cities;
 /// println!("random: {:?}", get_random_cities());
 /// ```
-pub fn get_random_cities() -> &'static City{
-    return CITIES.choose(&mut rand::thread_rng()).unwrap();
+pub fn get_random_cities() -> &'static City {
+    return &CITIES[random_range(0..CITIES.len())];
 }
