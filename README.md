@@ -1,8 +1,8 @@
-# :cityscape: Cities of the World [![Creative Commons License](https://i.creativecommons.org/l/by/3.0/80x15.png)](https://creativecommons.org/licenses/by/3.0/)
+# :cityscape: Cities of the World [![CC BY 4.0][cc-by-shield]][cc-by]
 
 These **cities** are coming from the [GeoNames Gazetteer](http://www.geonames.org).
 
-> _all cities with a population > 1000 or seats of adm div (ca 150.000) [...]_
+> _all cities with a population > 1000 or seats of adm div down to PPLA3 (ca 130.000) [...]_
 
 _Thus, this file is updated **monthly** and new cities are added as world population rises._
 
@@ -10,27 +10,25 @@ _Thus, this file is updated **monthly** and new cities are added as world popula
 
 ## Install
 
-```
+```sh
 npm install --save cities.json
 ```
 
 ## Usage
 
-Either on **node** or the **browser** (with `webpack`) it get as simple as this:
+**Node.js**
 
-**ES5**
+*Since **Node.js** v22 you should import `json` files with [import attributes](https://nodejs.org/docs/latest-v22.x/api/esm.html#import-attributes):*
 
+```js
+import cities from 'cities.json' with { type: 'json' }
 ```
-const cities = require('cities.json');
-```
 
-**ES6**
-
-```
+**Webpack**
+```js
 import cities from 'cities.json';
 ```
-
-> Since webpack >= v2.0.0, importing of JSON files will work by default.
+> *Since webpack >= v2.0.0, importing of JSON files will work by default.*
 
 ## Description
 
@@ -43,7 +41,7 @@ This Json version is an array of object of the following shape:
 - Admin code 1: the code of an administrative division (see [Administrative divisions](#administrative-divisions))
 - Admin code 2: the code of an administrative subdivision (see [Administrative divisions](#administrative-divisions))
 
-```jsonc
+```json
 [
   {
     "name": "Lyon",
@@ -53,7 +51,6 @@ This Json version is an array of object of the following shape:
     "admin1": "84",
     "admin2": "69"
   }
-  // etc.
 ]
 ```
 
@@ -98,4 +95,11 @@ For [./admin2.json](./admin2.json) concatenate `country`, `admin1` code and the 
 
 ## Licence
 
-This work is licensed under a [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/).
+This work is licensed under a
+[Creative Commons Attribution 4.0 International License][cc-by].
+
+[![CC BY 4.0][cc-by-image]][cc-by]
+
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
+[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
