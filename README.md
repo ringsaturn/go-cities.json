@@ -14,9 +14,11 @@
   println!("first {:?}", CITIES.get(0).unwrap().name);
   ```
 - Python: <https://pypi.org/project/citiespy/>
+
   ```bash
   pip install citiespy
   ```
+
   ```python
   from citiespy import all_cities, random_city
 
@@ -31,5 +33,4 @@
 
 This project is open sourced under [The Unlicense](./LICENSE).
 
-Upstream data is under
-[Creative Commons Attribution 3.0 License](https://github.com/lutangar/cities.json#licence).
+The dataset, `cities.json`, created created by [lutangar](https://github.com) and is licensed under [Creative Commons Attribution 4.0 International](https://github.com/lutangar/cities.json/blob/master/LICENSE)
