@@ -29,8 +29,13 @@
   print(len(cities))
   ```
 
+For Swift, see [cities-swift](https://github.com/ringsaturn/cities-swift).
+
 ## LICENSE
 
 This project is open sourced under [The Unlicense](./LICENSE).
 
-The dataset, `cities.json`, created created by [lutangar](https://github.com) and is licensed under [Creative Commons Attribution 4.0 International](https://github.com/lutangar/cities.json/blob/master/LICENSE)
+The [dataset](./data/), `cities.json`, created by [lutangar](https://github.com)
+and is licensed under [CC-BY-4.0 license][upstream_license].
+
+[upstream_license]: https://github.com/lutangar/cities.json/blob/master/LICENSE
