@@ -9,7 +9,7 @@ on:
       - "citiespy/**"
       - "src/**"
       - ".github/workflows/rust.yaml"
-      - "upstream/*"
+      - "data/*"
       - "rust-toolchain.toml"
 
 jobs:

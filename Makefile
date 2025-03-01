@@ -1,6 +1,6 @@
 sync:
-	cd cities.json;git pull
 	cp cities.json/cities.json data/
+	cp cities.json/LICENSE data/LICENSE
 
 all:
 	go fmt ./...

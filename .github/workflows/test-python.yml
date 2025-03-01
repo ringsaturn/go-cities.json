@@ -6,14 +6,14 @@ on:
       - "citiespy/**"
       - "src/**"
       - ".github/workflows/test-python.yml"
-      - "upstream/*"
+      - "data/*"
       - "rust-toolchain.toml"
   push:
     paths:
       - "citiespy/**"
       - "src/**"
       - ".github/workflows/test-python.yml"
-      - "upstream/*"
+      - "data/*"
       - "rust-toolchain.toml"
 
 concurrency:

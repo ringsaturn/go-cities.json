@@ -8,7 +8,7 @@ on:
     paths:
       - ".github/workflows/go.yaml"
       - "*.go"
-      - "upstream/*"
+      - "data/*"
 
 jobs:
   build:
