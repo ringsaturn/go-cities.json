@@ -31,12 +31,12 @@ type Geometry struct {
 }
 
 func TestGenGeoJSON(t *testing.T) {
-	featureCll := &FeatureCollection{
+	featureCollection := &FeatureCollection{
 		Type:     "FeatureCollection",
 		Features: make([]Features, 0),
 	}
 	for _, city := range gocitiesjson.Cities {
-		featureCll.Features = append(featureCll.Features, Features{
+		featureCollection.Features = append(featureCollection.Features, Features{
 			Type: "Feature",
 			Properties: map[string]interface{}{
 				"Country": city.Country,
@@ -50,7 +50,7 @@ func TestGenGeoJSON(t *testing.T) {
 			},
 		})
 	}
-	featureBytes, err := json.Marshal(featureCll)
+	featureBytes, err := json.Marshal(featureCollection)
 	if err != nil {
 		panic(err)
 	}

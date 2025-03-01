@@ -1,2 +1,9 @@
 sync:
 	git subtree pull --prefix=upstream "https://github.com/lutangar/cities.json" master --squash
+
+all:
+	go fmt ./...
+	golangci-lint run ./...
+	go test -v ./...
+	cargo test
+	cd citiespy && make test
