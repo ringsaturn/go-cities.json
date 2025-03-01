@@ -1,6 +1,6 @@
 [package]
 name = "citiespy"
-version = "0.6.8"
+version = "0.6.9"
 edition = "2021"
 license = "Unlicense"
 
@@ -11,5 +11,5 @@ name = "citiespy"
 crate-type = ["cdylib"]
 
 [dependencies]
-pyo3 = {version = "0.23.4", features = ["extension-module", "abi3-py39"]}
+pyo3 = {version = "0.23.5", features = ["extension-module", "abi3-py39"]}
 cities-json = { path = "../" }
