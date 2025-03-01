@@ -8,7 +8,5 @@ class City(object):
     admin1: str
     admin2: str
 
-
 def random_city() -> City: ...
-
 def all_cities() -> List[City]: ...
