@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	//go:embed upstream/cities.json
+	//go:embed data/cities.json
 	citiesbytes []byte
 
 	Cities []*City

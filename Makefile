@@ -1,5 +1,6 @@
 sync:
-	git subtree pull --prefix=upstream "https://github.com/lutangar/cities.json" master --squash
+	cd cities.json;git pull
+	cp cities.json/cities.json data/
 
 all:
 	go fmt ./...

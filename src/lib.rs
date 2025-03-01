@@ -37,7 +37,7 @@ struct RawCity {
 }
 
 fn load_json_data() -> Vec<u8> {
-    include_bytes!("../upstream/cities.json").to_vec()
+    include_bytes!("../data/cities.json").to_vec()
 }
 
 fn get_cities() -> Cities {
