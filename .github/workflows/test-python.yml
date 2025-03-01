@@ -28,109 +28,25 @@ env:
   PYO3_USE_ABI3_FORWARD_COMPATIBILITY: 1
 
 jobs:
-  ubuntu:
-    runs-on: ubuntu-latest
+  Testing:
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13.0-rc.2"]
-
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions-rust-lang/setup-rust-toolchain@v1
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: "pip"
-          cache-dependency-path: "citiespy/requirements_dev.txt"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
 
-      - name: Create virtual environment
-        run: |
-          python -m venv venv
-          echo "$GITHUB_WORKSPACE/citiespy/venv/bin" >> $GITHUB_PATH
-
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements_dev.txt
-
-      - name: Install
-        run: |
-          source activate
-          maturin develop
-
-      - name: Run tests and report coverage
-        run: pytest --cov tests/
-
-  macos:
-    runs-on: macos-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13.0-rc.2"]
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: "pip"
-          cache-dependency-path: "citiespy/requirements_dev.txt"
-
-      - name: Create virtual environment
-        run: |
-          python -m venv venv
-          echo "$GITHUB_WORKSPACE/citiespy/venv/bin" >> $GITHUB_PATH
-
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements_dev.txt
-
-      - name: Install
-        run: |
-          source activate
-          maturin develop
-
-      - name: Run tests and report coverage
-        run: pytest --cov tests/
-
-  windows:
-    runs-on: windows-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13.0-rc.2"]
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: "pip"
-          cache-dependency-path: "citiespy/requirements_dev.txt"
-
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements_dev.txt
-
-      - name: Install
+      - name: Install and test
         shell: bash
         run: |
-          maturin build
-          pip install target/wheels/citiespy-*.whl
+          make lint
+          make test
 
-      - name: Run tests and report coverage
-        run: pytest --cov tests/
+      - name: Minimize uv cache
+        run: uv cache prune --ci
