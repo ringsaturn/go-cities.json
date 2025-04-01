@@ -1,4 +1,5 @@
 sync:
+	git submodule update
 	cp cities.json/cities.json data/
 	cp cities.json/LICENSE data/LICENSE
 
