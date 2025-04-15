@@ -20,9 +20,9 @@ type FeatureCollection struct {
 }
 
 type Features struct {
-	Type       string                 `json:"type"`
-	Properties map[string]interface{} `json:"properties"`
-	Geometry   Geometry               `json:"geometry"`
+	Type       string         `json:"type"`
+	Properties map[string]any `json:"properties"`
+	Geometry   Geometry       `json:"geometry"`
 }
 
 type Geometry struct {
@@ -38,7 +38,7 @@ func TestGenGeoJSON(t *testing.T) {
 	for _, city := range gocitiesjson.Cities {
 		featureCollection.Features = append(featureCollection.Features, Features{
 			Type: "Feature",
-			Properties: map[string]interface{}{
+			Properties: map[string]any{
 				"Country": city.Country,
 				"Name":    city.Name,
 				"Admin1":  city.Admin1,
