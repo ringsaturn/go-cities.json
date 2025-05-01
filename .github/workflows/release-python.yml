@@ -133,3 +133,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: wheels-*/*
+          generate_release_notes: true
