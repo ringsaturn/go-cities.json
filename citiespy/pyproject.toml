@@ -23,12 +23,11 @@ dev = [
 ]
 
 [build-system]
-requires = ["maturin>=1.8.2,<2.0"]
+requires = ["maturin>=1,<2"]
 build-backend = "maturin"
 
 [tool.maturin]
-bindings = "pyo3"
-cargo-extra-args = "--features python-extension"
+features = ["pyo3/extension-module", "pyo3/generate-import-lib"]
 
 [project.urls]
 "Source Code" = "https://github.com/ringsaturn/go-cities.json"
