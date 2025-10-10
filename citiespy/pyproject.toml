@@ -1,35 +1,33 @@
 [project]
 name = "citiespy"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Rust",
     "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 description = "Cities."
 dynamic = ["version"]
 
 [dependency-groups]
 dev = [
-    "maturin==1.8.3",
-    "pytest==8.3.5",
+    "maturin==1.9.6",
+    "pytest==8.4.2",
     "pytest-benchmark==5.1.0",
-    "pytest-cov==6.0.0",
-    "ruff==0.11.7",
+    "pytest-cov==7.0.0",
+    "ruff==0.13.1",
 ]
 
 [build-system]
-requires = ["maturin>=1.8.2,<2.0"]
+requires = ["maturin>=1,<2"]
 build-backend = "maturin"
 
 [tool.maturin]
-bindings = "pyo3"
-cargo-extra-args = "--features python-extension"
+features = ["pyo3/extension-module", "pyo3/generate-import-lib"]
 
 [project.urls]
 "Source Code" = "https://github.com/ringsaturn/go-cities.json"
