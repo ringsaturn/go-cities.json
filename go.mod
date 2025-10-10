@@ -1,3 +1,3 @@
 module github.com/ringsaturn/go-cities.json
 
-go 1.23
+go 1.25
