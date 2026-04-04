@@ -12,7 +12,11 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: >-
+      github.event_name == 'release' &&
+      github.event.action == 'published' &&
+      !contains(github.event.release.tag_name, 'alpha') &&
+      !contains(github.event.release.tag_name, 'beta')
     environment:
       name: publish
       url: https://crates.io/crates/cities-json
