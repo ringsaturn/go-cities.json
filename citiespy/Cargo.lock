@@ -49,7 +49,7 @@ dependencies = [
 
 [[package]]
 name = "cities-json"
-version = "0.6.13"
+version = "0.6.14"
 dependencies = [
  "lazy_static",
  "rand",
@@ -59,7 +59,7 @@ dependencies = [
 
 [[package]]
 name = "citiespy"
-version = "0.6.13"
+version = "0.6.14"
 dependencies = [
  "cities-json",
  "pyo3",
