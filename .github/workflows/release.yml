@@ -21,7 +21,7 @@ jobs:
       name: publish
       url: https://crates.io/crates/cities-json
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions-rust-lang/setup-rust-toolchain@v1
       - name: Authenticate with crates.io
         id: auth
