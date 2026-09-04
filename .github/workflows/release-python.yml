@@ -54,6 +54,9 @@ jobs:
           - runner: ubuntu-22.04
             target: armv7-unknown-linux-gnueabihf
             arch: armv7
+          - runner: ubuntu-24.04-riscv
+            target: riscv64gc-unknown-linux-gnu
+            arch: riscv64
           # - runner: ubuntu-22.04
           #   target: s390x
           # - runner: ubuntu-22.04
@@ -136,6 +139,9 @@ jobs:
           - runner: ubuntu-22.04
             target: armv7-unknown-linux-musleabihf
             arch: armv7
+          - runner: ubuntu-24.04-riscv
+            target: riscv64gc-unknown-linux-musl
+            arch: riscv64
     steps:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
