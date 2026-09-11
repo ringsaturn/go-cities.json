@@ -44,24 +44,32 @@ jobs:
       matrix:
         platform:
           - runner: ubuntu-22.04
-            target: x86_64
+            target: x86_64-unknown-linux-gnu
+            arch: x86_64
           # - runner: ubuntu-22.04
           #   target: x86
           - runner: ubuntu-22.04
-            target: aarch64
+            target: aarch64-unknown-linux-gnu
+            arch: aarch64
           - runner: ubuntu-22.04
-            target: armv7
+            target: armv7-unknown-linux-gnueabihf
+            arch: armv7
+          - runner: ubuntu-24.04-riscv
+            target: riscv64gc-unknown-linux-gnu
+            arch: riscv64
           # - runner: ubuntu-22.04
           #   target: s390x
           # - runner: ubuntu-22.04
           #   target: ppc64le
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
+          activate-environment: true
           python-version: "3.10"
+          enable-cache: false
       - name: Build wheels
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
           target: ${{ matrix.platform.target }}
           args: --release --out dist -i python3.10
@@ -69,7 +77,7 @@ jobs:
           working-directory: citiespy
           manylinux: auto
       - name: Validate cp310 wheel install
-        if: ${{ matrix.platform.target == 'x86_64' }}
+        if: ${{ matrix.platform.arch == 'x86_64' }}
         shell: bash
         working-directory: citiespy
         run: |
@@ -79,23 +87,25 @@ jobs:
             echo "Missing cp310 wheel in dist"
             exit 1
           fi
-          python -m pip install --upgrade pip
-          python -m pip install --force-reinstall --no-deps "$wheel"
+          uv pip install --upgrade pip
+          uv pip install --force-reinstall --no-deps "$wheel"
           python tests/test_basic.py
       - name: Build free-threaded wheels
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
           target: ${{ matrix.platform.target }}
           args: --release --out dist -i python3.14t
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
           working-directory: citiespy
           manylinux: auto
-      - uses: actions/setup-python@v7
-        if: ${{ matrix.platform.target == 'x86_64' }}
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        if: ${{ matrix.platform.arch == 'x86_64' }}
         with:
-          python-version: 3.14t
+          activate-environment: true
+          python-version: "3.14t"
+          enable-cache: false
       - name: Validate cp314t wheel install
-        if: ${{ matrix.platform.target == 'x86_64' }}
+        if: ${{ matrix.platform.arch == 'x86_64' }}
         shell: bash
         working-directory: citiespy
         run: |
@@ -105,13 +115,13 @@ jobs:
             echo "Missing cp314t wheel in dist"
             exit 1
           fi
-          python -m pip install --upgrade pip
-          python -m pip install --force-reinstall --no-deps "$wheel"
+          uv pip install --upgrade pip
+          uv pip install --force-reinstall --no-deps "$wheel"
           python tests/test_basic.py
       - name: Upload wheels
         uses: actions/upload-artifact@v7
         with:
-          name: wheels-linux-${{ matrix.platform.target }}
+          name: wheels-linux-${{ matrix.platform.arch }}
           path: citiespy/dist
 
   musllinux:
@@ -121,20 +131,25 @@ jobs:
       matrix:
         platform:
           - runner: ubuntu-22.04
-            target: x86_64
+            target: x86_64-unknown-linux-musl
+            arch: x86_64
           # - runner: ubuntu-22.04
           #   target: x86
           - runner: ubuntu-22.04
-            target: aarch64
+            target: aarch64-unknown-linux-musl
+            arch: aarch64
           - runner: ubuntu-22.04
-            target: armv7
+            target: armv7-unknown-linux-musleabihf
+            arch: armv7
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
         with:
+          activate-environment: true
           python-version: "3.10"
+          enable-cache: false
       - name: Build wheels
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
           target: ${{ matrix.platform.target }}
           args: --release --out dist -i python3.10
@@ -142,7 +157,7 @@ jobs:
           working-directory: citiespy
           manylinux: musllinux_1_2
       - name: Build free-threaded wheels
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
           target: ${{ matrix.platform.target }}
           args: --release --out dist -i python3.14t
@@ -152,7 +167,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v7
         with:
-          name: wheels-musllinux-${{ matrix.platform.target }}
+          name: wheels-musllinux-${{ matrix.platform.arch }}
           path: citiespy/dist
 
   windows:
@@ -176,7 +191,7 @@ jobs:
           python-version: ${{ matrix.platform.python_version }}
           architecture: ${{ matrix.platform.python_arch }}
       - name: Build wheels
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
           target: ${{ matrix.platform.target }}
           args: --release --out dist
@@ -201,7 +216,7 @@ jobs:
           python-version: 3.14t
           architecture: ${{ matrix.platform.python_arch }}
       - name: Build free-threaded wheels
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
           target: ${{ matrix.platform.target }}
           args: --release --out dist -i python3.14t
@@ -243,7 +258,7 @@ jobs:
         with:
           python-version: "3.10"
       - name: Build wheels
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
           target: ${{ matrix.platform.target }}
           args: --release --out dist -i python3.10
@@ -264,7 +279,7 @@ jobs:
           python -m pip install --force-reinstall --no-deps "$wheel"
           python tests/test_basic.py
       - name: Build free-threaded wheels
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
           target: ${{ matrix.platform.target }}
           args: --release --out dist -i python3.14t
@@ -299,7 +314,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Build sdist
-        uses: PyO3/maturin-action@v1
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
           command: sdist
           args: --out dist
